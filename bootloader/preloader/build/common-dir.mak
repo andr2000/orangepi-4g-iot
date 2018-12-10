@@ -35,6 +35,11 @@
 
 include $(MTK_PATH_PLATFORM)/makefile.mak
 
+$(info $(MTK_PATH_PLATFORM) )
+$(info $(D_ROOT) )
+$(info $(PRELOADER_OUT) )
+$(info ================================================================= )
+
 CURDIR_FLAG := $(PRELOADER_OUT)/obj/$(subst /,_,$(patsubst $(D_ROOT)/%,%,$(patsubst %/,%,$(CURDIR)))).flag
 
 all: $(CURDIR_FLAG)

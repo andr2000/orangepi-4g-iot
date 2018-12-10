@@ -35,6 +35,8 @@
 # Compatible with Ubuntu 12.04
 SHELL := /bin/bash
 
+-include local.mk
+
 .DELETE_ON_ERROR:
 all:
 
