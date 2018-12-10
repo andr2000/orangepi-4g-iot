@@ -4,6 +4,11 @@ BUILD_NANDWRITE ?= 1
 # for Yocto SDK/build
 TOOLCHAIN_PREFIX ?= $(TARGET_PREFIX)
 
+# Enable debug level here instead of project file:
+# Some projects check for the DEBUG value and some are just
+# happy if it is set, even if to 0
+#DEBUG := 2
+
 # XXX: Detect which floating point ABI the toolchain has:
 # if this is a hardfp, then we need to provide a softfp libgcc
 TOOLCHAIN_LIBGCC = $(shell $(CC) -print-libgcc-file-name)
