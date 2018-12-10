@@ -7,5 +7,3 @@ MODULES += \
 
 OBJS += \
 	$(LOCAL_DIR)/dev.o
-
-include $(LOCAL_DIR)/logo/rules.mk
