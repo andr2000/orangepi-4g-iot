@@ -207,6 +207,6 @@ LIBSEC := -L$(LOCAL_DIR)/lib -lsec
 else
 LIBSEC := -L$(LOCAL_DIR)/lib -lsec -lauth
 endif
-LIBSEC_PLAT := -lsplat -ldevinfo
+LIBSEC_PLAT := -lsplat -ldevinfo $(LIBGCC)
 
 LINKER_SCRIPT += $(BUILDDIR)/system-onesegment.ld

@@ -3,3 +3,16 @@ ARM_CPU ?= cortex-a15
 BUILD_NANDWRITE ?= 1
 # for Yocto SDK/build
 TOOLCHAIN_PREFIX ?= $(TARGET_PREFIX)
+
+# XXX: Detect which floating point ABI the toolchain has:
+# if this is a hardfp, then we need to provide a softfp libgcc
+TOOLCHAIN_LIBGCC = $(shell $(CC) -print-libgcc-file-name)
+LIBGCC_HARDFP ?= $(shell $(TARGET_PREFIX)readelf -A $(TOOLCHAIN_LIBGCC) | grep "VFP registers" | uniq)
+ifneq ($(LIBGCC_HARDFP),)
+LIBGCC = $(CURDIR)/prebuilt/libgcc-softfp.a
+#CFLAGS += $(LIBGCC)
+$(info ================================================================= )
+$(info WARN! Toolchain is built with hardfp, providing prebuilt at )
+$(info $(LIBGCC) )
+$(info ================================================================= )
+endif
