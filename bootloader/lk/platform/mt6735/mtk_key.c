@@ -34,7 +34,7 @@ BOOL mtk_detect_key(unsigned short key)	/* key: HW keycode */
 	return FALSE;
 #else
 
-	dprintf(ALWAYS, "mtk detect key function key = %d\n", key);
+	dprintf(SPEW, "mtk detect key function key = %d\n", key);
 
 	unsigned short idx, bit, din;
 
@@ -59,7 +59,7 @@ BOOL mtk_detect_key(unsigned short key)	/* key: HW keycode */
 		dprintf(INFO, "mtk detect key function pmic_detect_homekey MTK_PMIC_RST_KEY = %d\n", MTK_PMIC_RST_KEY);
 		if (1 == pmic_detect_homekey())
 		{
-			dprintf(ALWAYS, "mtk detect key function pmic_detect_homekey pressed\n");
+			dprintf(SPEW, "mtk detect key function pmic_detect_homekey pressed\n");
 			return TRUE;
 		}
 		return FALSE;
@@ -71,7 +71,7 @@ BOOL mtk_detect_key(unsigned short key)	/* key: HW keycode */
 
 	din = DRV_Reg16(KP_MEM1 + (idx << 2)) & (1U << bit);
 	if (!din) {
-		dprintf(ALWAYS, "key %d is pressed\n", key);
+		dprintf(SPEW, "key %d is pressed\n", key);
 		return TRUE;
 	}
 	return FALSE;
@@ -82,12 +82,12 @@ BOOL mtk_detect_pmic_just_rst(void)
 {
 	kal_uint32 just_rst = 0;
 
-	dprintf(ALWAYS, "detecting pmic just reset\n");
+	dprintf(SPEW, "detecting pmic just reset\n");
 
 	just_rst=pmic_get_register_value(PMIC_JUST_PWRKEY_RST); 
 	if (just_rst)
 	{
-		dprintf(ALWAYS, "Just recover from a reset\n");
+		dprintf(SPEW, "Just recover from a reset\n");
 		pmic_set_register_value(PMIC_CLR_JUST_RST, 0x01);
 		return TRUE;
 	}

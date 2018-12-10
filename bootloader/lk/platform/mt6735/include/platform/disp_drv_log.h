@@ -37,9 +37,9 @@
 #define __DISP_DRV_LOG_H__
 
 #ifdef USER_BUILD
-#define DISP_DFINFO     (1)
+#define DISP_DFINFO     (2)
 #else
-#define DISP_DFINFO     (0)
+#define DISP_DFINFO     (2)
 #endif
 
 #define DISP_LOG_PRINT(level, sub_module, fmt, arg...)      \

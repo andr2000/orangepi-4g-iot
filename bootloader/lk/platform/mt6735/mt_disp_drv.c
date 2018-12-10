@@ -380,7 +380,7 @@ UINT32 mt_disp_get_lcd_time(void)
 	unsigned int fps = 0;
 	// TODO: will enable after te enabled
 	fps = primary_display_get_vsync_interval();
-	dprintf(CRITICAL, "%s, fps=%d\n", __func__, fps);
+	dprintf(SPEW, "%s, fps=%d\n", __func__, fps);
 	if (fps)
 		return fps;
 	else

@@ -440,16 +440,16 @@ DSI_STATUS DSI_DumpRegisters(DISP_MODULE_ENUM module, void *cmdq, int level)
 	if (level >= 0) {
 		if (module == DISP_MODULE_DSI0 /* || module == DISP_MODULE_DSIDUAL */) {
 			unsigned int DSI_DBG6_Status = (INREG32(DSI0_BASE + 0x160)) & 0xffff;
-			dprintf(CRITICAL, "DSI0 state:%s\n",
+			dprintf(SPEW, "DSI0 state:%s\n",
 				_dsi_cmd_mode_parse_state(DSI_DBG6_Status));
-			dprintf(CRITICAL, "DSI Mode: lane num: transfer count: status: ");
+			dprintf(SPEW, "DSI Mode: lane num: transfer count: status: ");
 		}
 #if 0
 		if (module == DISP_MODULE_DSI1 || module == DISP_MODULE_DSIDUAL) {
 			unsigned int DSI_DBG6_Status = (INREG32(DSI1_BASE + 0x160)) & 0xffff;
-			dprintf(CRITICAL, "DSI1 state:%s\n",
+			dprintf(SPEW, "DSI1 state:%s\n",
 				_dsi_cmd_mode_parse_state(DSI_DBG6_Status));
-			dprintf(CRITICAL, "DSI Mode: lane num: transfer count: status: ");
+			dprintf(SPEW, "DSI Mode: lane num: transfer count: status: ");
 		}
 #endif
 	}
@@ -457,16 +457,16 @@ DSI_STATUS DSI_DumpRegisters(DISP_MODULE_ENUM module, void *cmdq, int level)
 		if (module == DISP_MODULE_DSI0 /* || module == DISP_MODULE_DSIDUAL */) {
 			unsigned int DSI_DBG6_Status = (INREG32(DSI0_BASE + 0x160)) & 0xffff;
 
-			dprintf(CRITICAL, "---------- Start dump DSI0 registers ----------\n");
+			dprintf(SPEW, "---------- Start dump DSI0 registers ----------\n");
 
 			for (i = 0; i < sizeof(DSI_REGS); i += 16) {
-				dprintf(CRITICAL, "DSI+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n", i,
+				dprintf(SPEW, "DSI+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n", i,
 					INREG32(DSI0_BASE + i), INREG32(DSI0_BASE + i + 0x4),
 					INREG32(DSI0_BASE + i + 0x8), INREG32(DSI0_BASE + i + 0xc));
 			}
 
 			for (i = 0; i < sizeof(DSI_CMDQ_REGS); i += 16) {
-				dprintf(CRITICAL, "DSI_CMD+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n",
+				dprintf(SPEW, "DSI_CMD+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n",
 					i, INREG32((DSI0_BASE + 0x200 + i)),
 					INREG32((DSI0_BASE + 0x200 + i + 0x4)),
 					INREG32((DSI0_BASE + 0x200 + i + 0x8)),
@@ -474,7 +474,7 @@ DSI_STATUS DSI_DumpRegisters(DISP_MODULE_ENUM module, void *cmdq, int level)
 			}
 
 			for (i = 0; i < sizeof(DSI_PHY_REGS); i += 16) {
-				dprintf(CRITICAL,
+				dprintf(SPEW,
 					"DSI_PHY+%04x : 0x%08x    0x%08x  0x%08x  0x%08x\n", i,
 					INREG32((MIPI_TX0_BASE + i)),
 					INREG32((MIPI_TX0_BASE + i + 0x4)),
@@ -486,16 +486,16 @@ DSI_STATUS DSI_DumpRegisters(DISP_MODULE_ENUM module, void *cmdq, int level)
 		if (module == DISP_MODULE_DSI1 || module == DISP_MODULE_DSIDUAL) {
 			unsigned int DSI_DBG6_Status = (INREG32(DSI1_BASE + 0x160)) & 0xffff;
 
-			dprintf(CRITICAL, "---------- Start dump DSI1 registers ----------\n");
+			dprintf(SPEW, "---------- Start dump DSI1 registers ----------\n");
 
 			for (i = 0; i < sizeof(DSI_REGS); i += 16) {
-				dprintf(CRITICAL, "DSI+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n", i,
+				dprintf(SPEW, "DSI+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n", i,
 					INREG32(DSI1_BASE + i), INREG32(DSI1_BASE + i + 0x4),
 					INREG32(DSI1_BASE + i + 0x8), INREG32(DSI1_BASE + i + 0xc));
 			}
 
 			for (i = 0; i < sizeof(DSI_CMDQ_REGS); i += 16) {
-				dprintf(CRITICAL, "DSI_CMD+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n",
+				dprintf(SPEW, "DSI_CMD+%04x : 0x%08x  0x%08x  0x%08x  0x%08x\n",
 					i, INREG32((DSI1_BASE + 0x200 + i)),
 					INREG32((DSI1_BASE + 0x200 + i + 0x4)),
 					INREG32((DSI1_BASE + 0x200 + i + 0x8)),
@@ -503,7 +503,7 @@ DSI_STATUS DSI_DumpRegisters(DISP_MODULE_ENUM module, void *cmdq, int level)
 			}
 
 			for (i = 0; i < sizeof(DSI_PHY_REGS); i += 16) {
-				dprintf(CRITICAL,
+				dprintf(SPEW,
 					"DSI_PHY+%04x : 0x%08x    0x%08x  0x%08x  0x%08x\n", i,
 					INREG32((MIPI_TX1_BASE + i)),
 					INREG32((MIPI_TX1_BASE + i + 0x4)),
